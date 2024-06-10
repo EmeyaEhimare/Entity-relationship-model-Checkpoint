@@ -1,0 +1,48 @@
+Entities:
+
+Gym:
+Attributes:
+GymID (primary key)
+Name
+Address
+PhoneNumber
+Member:
+Attributes:
+MemberID (primary key)
+LastName
+FirstName
+Address
+DateOfBirth
+Gender (e.g., Male, Female)
+Session:
+Attributes:
+SessionID (primary key)
+SportType
+Schedule (e.g., Date, Time)
+Capacity (maximum of 20 members)
+Coach:
+Attributes:
+CoachID (primary key)
+LastName
+FirstName
+Age
+Specialty
+Relationships:
+
+Member Registers At (Gym): (Many-to-One)
+A member can register at one gym, and a gym can have many members registered.
+Foreign Key: Member.GymID references Gym.GymID
+Member Participates In (Session): (Many-to-Many)
+A member can participate in many sessions, and a session can have many members participating.
+A junction table is needed to handle this relationship, named "MemberSession".
+MemberSession table will have:
+MemberSessionID (primary key)
+MemberID (foreign key references Member.MemberID)
+SessionID (foreign key references Session.SessionID)
+Session Led By (Coach): (Many-to-Many) (Optional)
+A session can be led by one or two coaches, and a coach can lead multiple sessions.
+A junction table is needed to handle this relationship, named "CoachSession". (Optional depending on the implementation)
+CoachSession table will have:
+CoachSessionID (primary key)
+CoachID (foreign key references Coach.CoachID)
+SessionID (foreign key references Session.SessionID)
